@@ -69,7 +69,7 @@ The AI combines **user financial data, tax rules, and contextual reasoning** to 
 
 ---
 
-## 📊 Smart Financial Dashboard
+## Smart Financial Dashboard
 
 A visual overview of the user's financial data including:
 
