@@ -3,6 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from flask import Flask, jsonify
+from flask_cors import CORS
 from dotenv import load_dotenv
 
 from auth import auth_bp
@@ -18,6 +19,9 @@ from config import Config
 def create_app() -> Flask:
     app = Flask(__name__)
     app.config.from_object(Config)
+
+    # Enable CORS for the frontend
+    CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 
     db.init_app(app)
     jwt.init_app(app)
