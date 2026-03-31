@@ -20,7 +20,10 @@ class Config:
     SECRET_KEY = os.getenv("SECRET_KEY", "change-this-secret-key")
     JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", "change-this-jwt-secret-key")
     JWT_ACCESS_TOKEN_EXPIRES_MINUTES = int(os.getenv("JWT_ACCESS_TOKEN_EXPIRES_MINUTES", "15"))
-    SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL", "sqlite:///taxai.db")
+    _database_url = os.getenv("DATABASE_URL", "")
+    if _database_url.startswith("postgres://"):
+        _database_url = _database_url.replace("postgres://", "postgresql://", 1)
+    SQLALCHEMY_DATABASE_URI = _database_url or "postgresql://postgres:postgres@localhost:5432/taxai"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
     GROQ_API_BASE_URL = os.getenv("GROQ_API_BASE_URL", "https://api.groq.com/openai/v1/chat/completions")
