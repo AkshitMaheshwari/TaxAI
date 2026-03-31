@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
   // API base URL - change this to your backend URL
-  const API_URL = 'http://127.0.0.1:5000';
+  const API_URL = 'http://0.0.0.0:8000';
 
   // Hydrate user on app load - always fetch fresh data from /api/auth/me if token exists
   useEffect(() => {
